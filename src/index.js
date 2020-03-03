@@ -16,11 +16,8 @@ const AppHeader = () => {
 
 const App = () => {
 
-    const loginBox = <span>Пожалуйста, залогиньтесь</span>
-
     return (    
     <div>
-    {loginBox}
     <AppHeader />
     <SearchPanel />
     <TodoList />
@@ -29,7 +26,13 @@ const App = () => {
 }
 
 const SearchPanel = () => {
-    return <input placeholder = "Search..." />;
+    const searchText = 'Поиск...';
+    const searchStyle = {
+        fontSize: "20px"
+    };
+    return <input
+    style = {searchStyle}
+    placeholder = {searchText} />;
 };
 
 ReactDOM.render(<App />, document.getElementById('root'))
