@@ -1,18 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-const TodoList = () => {
-    const items = ['Выучить React', 'Написать совершенно замечательное приложение']
-    return ( 
-        <ul>
-        <li> {items[0]} </li>  
-        <li> {items[1]} </li>  
-        </ul>
-    );
-};
+import AppHeader from './components/app-header';
+import SearchPanel from './components/search-panel';
+import TodoList from './components/to-do-list';
 
-const AppHeader = () => {
-    return <h1>Мой ToDo-лист</h1>
-}
 
 const App = () => {
 
@@ -24,15 +15,5 @@ const App = () => {
     </div>
     )
 }
-
-const SearchPanel = () => {
-    const searchText = 'Поиск...';
-    const searchStyle = {
-        fontSize: "20px"
-    };
-    return <input
-    style = {searchStyle}
-    placeholder = {searchText} />;
-};
 
 ReactDOM.render(<App />, document.getElementById('root'))
