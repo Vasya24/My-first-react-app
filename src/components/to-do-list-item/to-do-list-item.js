@@ -4,24 +4,25 @@ import './to-do-list-item.css';
 
 export default class TodoListItem extends Component {
 
-// constructor() {
-//   super();
-
-//   this.onLabelClick = () => {
-//     console.log(`Выполнено: ${this.props.label}`);
-// };
-// }
-
-
+state = {
+    done: false
+  };
 
 onLabelClick = () => {
-      console.log(`Выполнено: ${this.props.label}`);
+      this.setState({
+        done: true
+      });
 };
 
 
   render() {
 
     const { label, important = false } = this.props;
+    const {done} = this.state;
+    let classNames = 'to-do-list-item';
+    if (done) {
+      classNames += ' done';
+    };
 
     const style = {
       color: important ? 'steelblue' : 'black',
@@ -29,11 +30,11 @@ onLabelClick = () => {
     };
   
     return (
-      <span className="to-do-list-item">
+      <span className={classNames}>
         <span
           className="to-do-list-item-label"
           style={style}
-          onClick = {this.onLabelClick.bind(this)}>
+          onClick = {this.onLabelClick}>
           {label}
         </span>
   
