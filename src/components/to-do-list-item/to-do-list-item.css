@@ -19,7 +19,8 @@
   }
   
   .to-do-list-item.important .to-do-list-item-label {
-    font-weight: bold;
+    text-decoration: wavy;
     color: steelblue;
+    font-size: 0.5rem;
   }
   
