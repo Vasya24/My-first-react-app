@@ -1,20 +1,59 @@
-import React from 'react';
+import React, {Component} from 'react';
 
 import AppHeader from '../app-header';
 import SearchPanel from '../search-panel';
 import TodoList from '../to-do-list';
 import ItemStatusFilter from '../item-status-filter';
+import ItemAddForm from '../item-add-form';
 
 import './app.css';
 
-const App = () => {
+export default class App extends Component {
 
-  const todoData = [
-    { label: 'Выпить кофе', important: false, id: 1 },
-    { label: 'Выучить Реакт', important: true, id: 2 },
-    { label: 'Построить соврешненно замечательное приложение', important: false, id: 3 }
-  ];
+maxId = 100;
 
+  state = {
+    todoData: [
+      { label: 'Выпить кофе', important: false, id: 1 },
+      { label: 'Выучить Реакт', important: true, id: 2 },
+      { label: 'Построить соврешненно замечательное приложение', important: false, id: 3 }
+    ]
+  }
+    deleteItem = (id) => {
+      this.setState(({todoData}) => {
+        const idx = todoData.findIndex((el) => el.id == id);
+        
+
+        const newArray = [
+          ...todoData.slice(0, idx),
+          ...todoData.slice(idx + 1)];
+
+        return {
+          todoData: newArray
+        };
+      });
+    };
+
+    addItem = (text) => {
+      const newItem = {
+        label: text,
+        important: false,
+        id: this.maxId++
+      };
+
+      this.setState(({todoData}) => {
+        const newArr = [
+          ...todoData,
+          newItem
+        ];
+
+        return {
+          todoData: newArr
+        };
+      });
+    }
+
+render() {
   return (
     <div className="todo-app">
       <AppHeader toDo={1} done={3} />
@@ -24,10 +63,11 @@ const App = () => {
       </div>
 
       <TodoList 
-      todos={todoData}
-      onDeleted = {(id) => console.log("Deleted", id)} />
+      todos={this.state.todoData}
+      onDeleted = {this.deleteItem} />
+      <ItemAddForm onItemAdded={this.addItem}/>
     </div>
   );
-};
+}
+}
 
-export default App;
