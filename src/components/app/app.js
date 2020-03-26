@@ -32,7 +32,7 @@ maxId = 100;
 
     deleteItem = (id) => {
       this.setState(({todoData}) => {
-        const idx = todoData.findIndex((el) => el.id == id);
+        const idx = todoData.findIndex((el) => el.id === id);
         
 
         const newArray = [
